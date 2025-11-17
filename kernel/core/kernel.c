@@ -1,13 +1,13 @@
 #include <stdint.h>
 #include "../drivers/vga.c"
-
+#include"../drivers/cursor.c"
 // Multiboot header (должен быть в первых 8KB ядра)
 #define MULTIBOOT_HEADER_MAGIC 0x1BADB002
 #define MULTIBOOT_HEADER_FLAGS 0x00000003
 
 struct multiboot_header {
     uint32_t magic;
-    uint32_t flags;
+    uint32_t flag;
     uint32_t checksum;
 };
 
@@ -19,7 +19,7 @@ struct multiboot_header header = {
     -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
 };
 
-// VGA буфер
+
 char art1[] =
 "                                                                                "
 "                                                                                "
@@ -40,7 +40,12 @@ char art1[] =
 
 void kernel_main() {
     clear_screen();
-    printf(art1);
-
+    print_str(art1);
+    print_cursor("_");
     while(1) {}
 }
+
+
+
+
+

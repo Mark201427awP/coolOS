@@ -12,10 +12,11 @@ void clear_screen() {
     cur_x = 0;
     cur_y = 0;
 }
-void printf(char str[]) {
+void print_str(char str[]) {
     for(int i = 0; str[i] != '\0'; i++) {
         video[cur_x * 2] = str[i];
         video[cur_x * 2 + 1] = 0x0F;
         cur_x++;
     }
 }
+
